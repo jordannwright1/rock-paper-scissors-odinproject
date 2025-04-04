@@ -1,51 +1,56 @@
 function getComputerChoice() {
   if (Math.random() > 0 && Math.random() < 0.25) {
-    console.log( "Rock");
+    return  "rock";
   } else if (Math.random() > 0.25 && Math.random() < 0.50) {
-    console.log( "Paper");
+    return  "paper";
   } else {
-    console.log( "Scissors");
+    return  "scissors";
   }
   
 }
 
 function getHumanChoice() {
   let choice = prompt("Enter your choice here: ");
-  console.log(choice);
+  return choice;
 }
 
 let humanScore = 0;
 let computerScore = 0;
 
+
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === 'rock' && computerChoice === 'scissors') {
     console.log( 'You win!  Rock beats scissors!');
-    humanScore++;
+    return humanScore++;
   } else if (humanChoice === 'scissors' && computerChoice === 'rock') {
     console.log( 'You lost!  Rock beats scissors!');
-    computerScore++;
+    return computerScore++;
   } else if (humanChoice === 'paper' && computerChoice === 'scissors') {
     console.log( 'You lost!  Scissors beats paper!');
-    computerScore++;
+    return computerScore++;
   } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
     console.log( 'You win!  Scissors beats paper!');
-    humanScore++;
+    return humanScore++;
   } else if (humanChoice === 'paper' && computerChoice === 'rock') {
     console.log( 'You win!  Paper beats rock!');
-    humanScore++;
+    return humanScore++;
   } else if (humanChoice === 'rock' && computerChoice === 'paper') {
     console.log( 'You lost!  Paper beats rock!');
-    computerScore++;
+    return computerScore++;
   }
 }
 
-const humanSelection = getHumanChoice().toLowerCase();
-const computerSelection = getComputerChoice().toLowerCase();
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
 
 
 function playGame() {
-  for (let i = 0; i < 5; i++) {
-    playRound(humanSelection, computerSelection)
-  }
+  playRound(humanSelection, computerSelection);
+  playRound(humanSelection, computerSelection);
+  playRound(humanSelection, computerSelection);
+  playRound(humanSelection, computerSelection);
+  playRound(humanSelection, computerSelection);
 }
+
+playGame()
