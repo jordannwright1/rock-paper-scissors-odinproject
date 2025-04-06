@@ -69,14 +69,5 @@ function playRound(humanChoice, computerChoice) {
   } else if (computerScore === 5) {
     div.textContent = "Sorry, You lost!"
   } 
-  if (humanScore > 5 || computerScore > 5) {
-    div.textContent = "Reload to play again!"
-  }
 
 }
-
-
-
-
-
-
