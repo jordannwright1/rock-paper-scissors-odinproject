@@ -1,3 +1,20 @@
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+rockBtn.addEventListener('click', () => playRound('rock', getComputerChoice()));
+paperBtn.addEventListener('click', () => playRound('paper', getComputerChoice()));
+scissorsBtn.addEventListener('click', () => playRound('scissors', getComputerChoice()));
+const container = document.querySelector(".container");
+const div = document.createElement('div');
+const scoreBoard = document.createElement('div');
+container.appendChild(div);
+
+
+
+
+
+
+
 function getComputerChoice() {
   if (Math.random() > 0 && Math.random() < 0.25) {
     return  "rock";
@@ -17,53 +34,49 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-
 function playRound(humanChoice, computerChoice) {
-  if (humanChoice === 'rock' && computerChoice === 'scissors') {
-    console.log( 'You win!  Rock beats scissors!');
-    return humanScore++;
-  } else if (humanChoice === 'scissors' && computerChoice === 'rock') {
-    console.log( 'You lost!  Rock beats scissors!');
-    return computerScore++;
-  } else if (humanChoice === 'paper' && computerChoice === 'scissors') {
-    console.log( 'You lost!  Scissors beats paper!');
-    return computerScore++;
-  } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-    console.log( 'You win!  Scissors beats paper!');
-    return humanScore++;
-  } else if (humanChoice === 'paper' && computerChoice === 'rock') {
-    console.log( 'You win!  Paper beats rock!');
-    return humanScore++;
-  } else if (humanChoice === 'rock' && computerChoice === 'paper') {
-    console.log( 'You lost!  Paper beats rock!');
-    return computerScore++;
-  } else if (humanChoice === computerChoice) {
-    console.log(`It's a tie! You both picked ${humanChoice}`);
-  } else {
-    console.log("Invalid input! Please choose rock, paper, or scissors.");
-  }
-}
-
-
-
-
-
-function playGame() {
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log(`Score — You: ${humanScore}, Computer: ${computerScore}`);
-    console.log('----------------------------');
-  }
-  if (humanScore > computerScore) {
-    console.log("🎉 You won the game!");
-  } else if (computerScore > humanScore) {
-    console.log("😞 You lost the game!");
-  } else {
-    console.log("🤝 It's a tie overall!");
+  if (humanScore >= 5 || computerScore >= 5) {
+    return;
   }
   
+  if (humanChoice === 'rock' && computerChoice === 'scissors') {
+    div.textContent = 'You win!  Rock beats scissors!';
+    humanScore++;
+  } else if (humanChoice === 'scissors' && computerChoice === 'rock') {
+    div.textContent = 'You lost!  Rock beats scissors!';
+    computerScore++;
+  } else if (humanChoice === 'paper' && computerChoice === 'scissors') {
+    div.textContent = 'You lost!  Scissors beats paper!';
+    computerScore++;
+  } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+    div.textContent = 'You win!  Scissors beats paper!';
+    humanScore++;
+  } else if (humanChoice === 'paper' && computerChoice === 'rock') {
+    div.textContent = 'You win!  Paper beats rock!';
+    humanScore++;
+  } else if (humanChoice === 'rock' && computerChoice === 'paper') {
+    div.textContent = 'You lost!  Paper beats rock!';
+    computerScore++;
+  } else if (humanChoice === computerChoice) {
+    div.textContent =`It's a tie! You both picked ${humanChoice}`;
+  } else {
+    div.textContent = "Invalid input! Please choose rock, paper, or scissors.";
+  }
+  scoreBoard.textContent = `${humanScore} : ${computerScore}`
+  container.appendChild(scoreBoard);
+  if (humanScore === 5) {
+    div.textContent = "Congrats! You won!"
+  } else if (computerScore === 5) {
+    div.textContent = "Sorry, You lost!"
+  } 
+  if (humanScore > 5 || computerScore > 5) {
+    div.textContent = "Reload to play again!"
+  }
+
 }
 
-playGame()
+
+
+
+
+
