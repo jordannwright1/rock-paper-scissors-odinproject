@@ -65,9 +65,22 @@ function playRound(humanChoice, computerChoice) {
   scoreBoard.textContent = `${humanScore} : ${computerScore}`
   container.appendChild(scoreBoard);
   if (humanScore === 5) {
-    div.textContent = "Congrats! You won!"
+    div.textContent = "Congrats! You won!";
+    restart();
   } else if (computerScore === 5) {
-    div.textContent = "Sorry, You lost!"
+    div.textContent = "Sorry, You lost!";
+    restart();
   } 
+    
+  
+}
 
+
+function restart(){
+  if (humanScore === 5 || computerScore === 5) {
+    const restartBtn = document.createElement('button');
+    restartBtn.textContent = "Play Again";
+    restartBtn.addEventListener('click', () => location.reload());
+    container.appendChild(restartBtn);
+  }
 }
