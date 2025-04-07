@@ -1,0 +1,8 @@
+.choice {
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.choice:active {
+  transform: scale(0.9);
+}
